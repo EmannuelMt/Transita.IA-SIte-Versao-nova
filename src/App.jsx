@@ -7,7 +7,7 @@ import Auth from "./components/auth/auth"
 // pages
 import Home from "./pages/Home/Home.jsx"
 import About from "./pages/About/About"
-import Contato from "./pages/contato/Contato"
+import Contato from "./pages/Contato/Contato"
 import User from "./pages/User/User"
 import Planos from "./pages/Planos/Planos"
 import Dashboard from "./pages/Dashboard/Dashboard"
