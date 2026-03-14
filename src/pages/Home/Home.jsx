@@ -62,6 +62,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Home.css';
 import logo from '../../assets/images/Logo/logo.svg';
 import heroBackground from '../../assets/images/Logo/logobannerhero.jpg';
+import registerImage from '../../assets/images/Home/register-e-frota.jpg';
+import registerEmployees from '../../assets/images/Home/register-funcionarios.jpg';
+import activationImage from '../../assets/images/Home/Processo de ativação da conta.jpg';
 
 // Componente de Partículas Otimizado
 const Particles = React.memo(({ count = 30 }) => {
@@ -585,6 +588,7 @@ const Home = () => {
         </motion.div>
       </section>
 
+
       {/* Video Modal */}
       <AnimatePresence>
         {isVideoModalOpen && (
@@ -795,6 +799,181 @@ const Home = () => {
         </div>
       </section>
       
+ {/* Processo de ativação da conta empresarial */}
+      <section className="activation-process" id="ativacao-conta">
+        <div className="container">
+          <div className="register-grid">
+            <motion.div
+              className="register-content"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="section-badge">
+                <ShieldCheck size={16} />
+                Processo de ativação da conta empresarial
+              </span>
+
+              <h2 className="section-title">
+                Processo de ativação da <span className="section-title-gradient">conta empresarial</span>
+              </h2>
+
+              <p className="section-description">
+                Olá! Sabemos que muitos usuários podem ter dúvidas sobre o funcionamento do nosso site e sobre como ocorre o processo de cadastro e ativação das empresas dentro da plataforma Transita.IA. Por isso, reunimos algumas informações importantes para explicar melhor como funciona esse processo.
+              </p>
+
+              <p className="section-description">
+                Na Transita.IA, cada empresa possui um banco de dados exclusivo e isolado, criado especialmente para garantir um alto padrão de segurança, organização e profissionalismo. Essa estrutura permite que todas as informações de cada cliente sejam armazenadas de forma independente, evitando qualquer risco de conflito entre dados, acessos indevidos ou vazamentos de informações. Dessa forma, garantimos que os dados da sua empresa permaneçam protegidos e que o sistema funcione com máxima eficiência e confiabilidade.
+              </p>
+
+              <p className="section-description">
+                Para que possamos liberar o ambiente completo da empresa dentro da plataforma, é necessário que a empresa já possua uma conta registrada no site. Esse cadastro inicial permite que nossa equipe identifique a empresa no sistema e, posteriormente, libere o acesso administrativo (Admin) para que ela possa gerenciar sua própria área dentro da plataforma.
+              </p>
+
+              <p className="section-description">
+                Devido ao processo de criação e configuração personalizada do ambiente de cada empresa, o prazo de implementação pode levar alguns dias ou até algumas semanas, dependendo da demanda e da complexidade das configurações solicitadas. Esse cuidado faz parte do nosso compromisso em entregar uma plataforma segura, estável e preparada para atender às necessidades específicas de cada cliente.
+              </p>
+
+              <p className="section-description">
+                Após a ativação da conta empresarial e a liberação do acesso administrativo, a empresa poderá gerenciar totalmente o seu ambiente dentro da plataforma. Com esse acesso, será possível cadastrar funcionários, registrar motoristas, gerenciar veículos, organizar rotas e utilizar todos os recursos disponíveis na Dashboard da Transita.IA, permitindo uma gestão mais eficiente das operações logísticas.
+              </p>
+
+              <p className="section-description">
+                É importante destacar que o processo de configuração e liberação completa do ambiente da empresa é realizado apenas após a contratação de um dos planos da plataforma ou mediante contato direto com nossa equipe para a solicitação de um serviço personalizado. Dessa forma, conseguimos entender melhor as necessidades de cada empresa e configurar a plataforma da maneira mais adequada.
+              </p>
+
+              <p className="section-description">
+                Nosso objetivo é oferecer uma solução segura, profissional e eficiente, garantindo que cada empresa tenha um ambiente exclusivo, organizado e preparado para crescer junto com suas operações. Caso tenha qualquer dúvida ou precise de mais informações, nossa equipe estará sempre disponível para ajudar.
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="register-image"
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="activation-image-wrapper">
+                <img src={activationImage} alt="Processo de ativação da conta" loading="lazy" />
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+
+       {/* Registro de Funcionários */}
+      <section className="register-employees" id="registro-funcionarios">
+        <div className="container">
+          <div className="register-grid">
+            <motion.div
+              className="register-content"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="section-badge">
+                <Users size={16} />
+                Registro de Funcionários
+              </span>
+
+              <h2 className="section-title">
+                Gestão de Colaboradores e <span className="section-title-gradient">Recursos Humanos</span>
+              </h2>
+
+              <p className="section-description">
+                A Transita.IA também conta com um módulo dedicado ao Registro e Gerenciamento de Funcionários, desenvolvido para facilitar a organização da equipe e centralizar todas as informações administrativas dentro da plataforma. Essa funcionalidade permite que empresas mantenham um controle estruturado e atualizado de todos os colaboradores, garantindo mais eficiência, organização e transparência na gestão interna.
+              </p>
+
+              <p className="section-description">
+                Por meio da Dashboard administrativa, gestores podem realizar o cadastro de novos funcionários de forma rápida, prática e segura, armazenando informações essenciais para a identificação e organização da equipe. Para efetuar o registro, basta informar dados básicos como nome completo, RG, CPF, CTPS (Carteira de Trabalho), data de admissão, cargo e setor, permitindo que cada colaborador seja devidamente identificado e integrado ao sistema.
+              </p>
+
+              <p className="section-description">
+                Após o cadastro, os funcionários passam a fazer parte do banco de dados da plataforma, possibilitando que a empresa acompanhe, organize e gerencie sua equipe de maneira centralizada e estruturada. Esse recurso é especialmente útil para organizações que possuem diferentes setores operacionais, administrativos ou logísticos, garantindo maior controle sobre os profissionais envolvidos nas atividades diárias.
+              </p>
+
+              <p className="section-description">
+                Com o módulo de Registro de Funcionários da Transita.IA, gestores têm acesso a uma ferramenta prática e eficiente para administrar equipes, manter registros organizados e otimizar a gestão de colaboradores, tudo diretamente pela Dashboard da plataforma, tornando o processo de gerenciamento mais simples, transparente e profissional.
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="register-image"
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="register-image-wrapper">
+                <img src={registerEmployees} alt="Registro de Funcionários" loading="lazy" />
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* Registro de Motorista e Frota */}
+      <section className="register-fleet" id="registro">
+        <div className="container">
+          <div className="register-grid">
+            <motion.div
+              className="register-content"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="section-badge">
+                <ShieldCheck size={16} />
+                Registro de Motoristas & Frota
+              </span>
+
+              <h2 className="section-title">
+                Gestão de Motoristas e <span className="section-title-gradient">Frotas</span>
+              </h2>
+
+              <p className="section-description">
+                A Transita.AI oferece uma plataforma completa para gestão logística e organização de operações de transporte, reunindo ferramentas inteligentes que auxiliam empresas no controle eficiente de suas atividades. Entre esses recursos, destaca-se o módulo de Registro de Motoristas e Gerenciamento de Frotas, disponível diretamente na Dashboard administrativa da plataforma.
+              </p>
+
+              <p className="section-description">
+                Essa funcionalidade permite que gestores realizem o cadastro e controle de motoristas de forma simples e centralizada, mantendo todas as informações organizadas em um único ambiente. Durante o registro, basta inserir os dados essenciais do motorista, como nome completo, RG, CPF e CNH, garantindo um banco de dados seguro e estruturado para a gestão da equipe responsável pelas operações de transporte.
+              </p>
+
+              <p className="section-description">
+                Além disso, a plataforma disponibiliza o sistema de cadastro e gerenciamento da frota de caminhões, permitindo registrar cada veículo utilizado pela empresa. Para adicionar um novo caminhão, é necessário informar dados básicos como número da placa, nome do veículo (ou identificação interna) e modelo do caminhão, facilitando o controle e a identificação dentro da operação logística.
+              </p>
+
+              <p className="section-description">
+                Um dos principais diferenciais desse módulo é a possibilidade de vincular motoristas aos veículos cadastrados, permitindo que cada caminhão seja associado a um motorista específico. Essa funcionalidade proporciona maior organização operacional, rastreabilidade e controle sobre as responsabilidades da equipe, tornando o gerenciamento da frota mais eficiente e transparente.
+              </p>
+
+              <p className="section-description">
+                Com tudo integrado à Dashboard da Transita.AI, gestores conseguem visualizar, cadastrar, editar e organizar motoristas e veículos em tempo real, garantindo uma administração mais estratégica, prática e escalável para empresas que dependem de logística e transporte no seu dia a dia.
+              </p>
+            </motion.div>
+
+            <motion.div
+              className="register-image"
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="register-image-wrapper">
+                <img src={registerImage} alt="Registro de Motoristas e Frota" loading="lazy" />
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+
       {/* Subscription Plans Section */}
       <section className="subscription-plans" id="planos" ref={plansRef}>
         <div className="container">
@@ -881,6 +1060,36 @@ const Home = () => {
             <p className="section-description">
               Compre tokens para usar serviços sob demanda, sem fidelidade
             </p>
+
+            <div className="tokens-explanation">
+              <p className="section-description">
+                Olá! Sabemos que muitos usuários podem ter dúvidas sobre como funcionam os tokens de acesso dentro da plataforma Transita.IA. Por isso, preparamos uma explicação simples para ajudar a entender melhor esse recurso.
+              </p>
+
+              <p className="section-description">
+                Os tokens são utilizados como um mecanismo de segurança e controle de acesso para o registro de funcionários dentro do sistema. Sempre que um novo colaborador precisar criar sua conta na plataforma, será necessário utilizar um token de registro, que será fornecido pela empresa responsável.
+              </p>
+
+              <p className="section-description">
+                Esse token funciona como uma chave de autorização, garantindo que apenas pessoas autorizadas pela empresa possam se registrar e ter acesso ao ambiente da organização dentro da plataforma.
+              </p>
+
+              <p className="section-description">
+                Cada token é único e individual, sendo destinado ao cadastro de apenas um funcionário específico. Após ser utilizado no momento do registro, o token passa a ficar automaticamente vinculado à conta do funcionário que realizou o cadastro, não podendo ser reutilizado por outra pessoa.
+              </p>
+
+              <p className="section-description">
+                Esse sistema ajuda a manter um alto nível de segurança e organização, evitando registros indevidos e garantindo que todos os usuários cadastrados estejam realmente vinculados à empresa responsável.
+              </p>
+
+              <p className="section-description">
+                Dessa forma, a Transita.IA assegura que o acesso ao sistema seja controlado de maneira segura, transparente e profissional, permitindo que cada empresa tenha total controle sobre quem pode ou não ingressar na plataforma como parte de sua equipe.
+              </p>
+
+              <p className="section-description">
+                Caso haja dúvidas sobre a geração ou utilização dos tokens, a empresa responsável ou o administrador da conta poderá fornecer as orientações necessárias para o cadastro dos funcionários.
+              </p>
+            </div>
           </motion.div>
 
           <div className="token-grid">

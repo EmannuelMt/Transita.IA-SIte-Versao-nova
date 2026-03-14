@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Home, 
@@ -52,6 +52,7 @@ const Navbar = () => {
   const [theme, setTheme] = useState('dark'); // 'light' ou 'dark'
   
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -79,13 +80,90 @@ const Navbar = () => {
     }
   };
 
+  // Search: results + history + simple DOM search
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchHistory, setSearchHistory] = useState([]);
+  const searchTimeoutRef = useRef(null);
+
+  useEffect(() => {
+    const saved = localStorage.getItem('transita_search_history');
+    if (saved) {
+      try { setSearchHistory(JSON.parse(saved)); } catch { setSearchHistory([]); }
+    }
+  }, []);
+
+  const saveHistoryToStorage = (hist) => {
+    try { localStorage.setItem('transita_search_history', JSON.stringify(hist)); } catch {}
+  };
+
+  const addToHistory = (q) => {
+    const normalized = (q || '').trim();
+    if (!normalized) return;
+    setSearchHistory(prev => {
+      const next = [normalized, ...prev.filter(h => h.toLowerCase() !== normalized.toLowerCase())].slice(0, 20);
+      saveHistoryToStorage(next);
+      return next;
+    });
+  };
+
+  const clearHistory = () => {
+    setSearchHistory([]);
+    try { localStorage.removeItem('transita_search_history'); } catch {}
+  };
+
+  const performSearch = (q) => {
+    const query = (q || '').trim().toLowerCase();
+    if (!query) { setSearchResults([]); return; }
+
+    const nodes = Array.from(document.querySelectorAll('section, h1, h2, h3, h4, p, a, li'));
+    const results = [];
+    const seen = new Set();
+
+    for (const el of nodes) {
+      const text = (el.textContent || '').trim();
+      if (!text) continue;
+      const lower = text.toLowerCase();
+      if (lower.includes(query)) {
+        const section = el.closest('section');
+        const sectionId = section ? section.id : '';
+        const heading = section ? (section.querySelector('h2, h1, h3')?.textContent || '') : '';
+        const key = (sectionId || heading || '').slice(0, 200) + '::' + text.slice(0, 200);
+        if (seen.has(key)) continue;
+        seen.add(key);
+
+        results.push({
+          title: heading || sectionId || text.slice(0, 40),
+          snippet: text.slice(0, 200),
+          anchor: sectionId ? `#${sectionId}` : '',
+        });
+        if (results.length >= 12) break;
+      }
+    }
+
+    setSearchResults(results);
+  };
+
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      console.log('Searching for:', searchQuery);
-      // Implementar lógica de busca
-      setSearchOpen(false);
-      setSearchQuery('');
+    const q = (searchQuery || '').trim();
+    if (!q) return;
+    addToHistory(q);
+    performSearch(q);
+  };
+
+  const handleResultClick = (result) => {
+    setSearchOpen(false);
+    // If result contains an anchor (section id), navigate to current path + anchor
+    if (result && result.anchor) {
+      const anchor = result.anchor.startsWith('#') ? result.anchor : `#${result.anchor}`;
+      const targetPath = location.pathname.split('#')[0] + anchor;
+      navigate(targetPath);
+      // try to scroll to element after navigation/render
+      const id = anchor.replace('#', '');
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 350);
     }
   };
 
@@ -309,12 +387,67 @@ const Navbar = () => {
                   type="text"
                   placeholder="Buscar na Transita.AI..."
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={(e) => {
+                    const v = e.target.value;
+                    setSearchQuery(v);
+                    if (searchTimeoutRef.current) clearTimeout(searchTimeoutRef.current);
+                    searchTimeoutRef.current = setTimeout(() => performSearch(v), 300);
+                  }}
                   className="search-input"
                 />
                 <button type="button" onClick={toggleSearch} className="search-close">
                   <X size={20} />
                 </button>
+
+                <div className="search-panel">
+                  {searchQuery.trim() === '' ? (
+                    <div className="search-history">
+                      <div className="search-history-header">
+                        <strong>Histórico de pesquisa</strong>
+                        {searchHistory.length > 0 && (
+                          <button className="clear-history" onClick={(ev) => { ev.preventDefault(); clearHistory(); }}>Limpar</button>
+                        )}
+                      </div>
+                      {searchHistory.length === 0 ? (
+                        <div className="search-empty">Nenhuma pesquisa recente</div>
+                      ) : (
+                        <ul>
+                          {searchHistory.map((h, i) => (
+                            <li key={i}>
+                              <button className="history-item" onClick={(ev) => { ev.preventDefault(); setSearchQuery(h); performSearch(h); addToHistory(h); }}>
+                                {h}
+                              </button>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="search-results">
+                      {searchResults.length === 0 ? (
+                        <div className="search-empty">Nenhum resultado encontrado</div>
+                      ) : (
+                        <ul>
+                          {searchResults.map((r, i) => (
+                            <li key={i} className="search-result-item">
+                              {r.anchor ? (
+                                <button className="history-item" onClick={(ev) => { ev.preventDefault(); handleResultClick(r); }}>
+                                  <strong>{r.title}</strong>
+                                  <div className="search-snippet">{r.snippet}</div>
+                                </button>
+                              ) : (
+                                <div>
+                                  <strong>{r.title}</strong>
+                                  <div className="search-snippet">{r.snippet}</div>
+                                </div>
+                              )}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  )}
+                </div>
               </form>
             </motion.div>
           )}

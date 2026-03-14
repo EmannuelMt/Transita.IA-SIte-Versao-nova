@@ -784,6 +784,141 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--green-moss);
 }
 
+/* ===== REGISTRO DE MOTORISTAS E FROTA ===== */
+.register-fleet {
+  padding: 80px 0;
+  background: var(--black-950);
+  border-top: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.register-grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 40px;
+  align-items: center;
+}
+
+.register-content .section-title {
+  margin-top: 8px;
+}
+
+.register-image-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glow-soft);
+}
+
+.register-image-wrapper img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.register-logo {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  width: 72px;
+  height: auto;
+  background: rgba(255,255,255,0.02);
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid var(--glass-border);
+}
+
+@media (max-width: 980px) {
+  .register-grid { grid-template-columns: 1fr; }
+  .register-image-wrapper { max-width: 100%; margin: 0 auto; }
+  .register-logo { left: 18px; top: 18px; }
+}
+/* ===== REGISTRO DE FUNCIONÁRIOS ===== */
+.register-employees {
+  padding: 80px 0;
+  background: var(--black-950);
+  border-top: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.register-employees .register-grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 40px;
+  align-items: center;
+}
+
+.register-employees .register-content .section-title {
+  margin-top: 8px;
+}
+
+.register-employees .register-image-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glow-soft);
+}
+
+.register-employees .register-image-wrapper img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+@media (max-width: 980px) {
+  .register-employees .register-grid { grid-template-columns: 1fr; }
+  .register-employees .register-image-wrapper { max-width: 100%; margin: 24px auto 0; }
+}
+
+/* ===== PROCESSO DE ATIVAÇÃO DA CONTA EMPRESARIAL ===== */
+.activation-process {
+  padding: 80px 0;
+  background: var(--black-900);
+  border-top: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.activation-process .register-grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 40px;
+  align-items: center;
+}
+
+.activation-process .section-description {
+  margin-bottom: 18px;
+}
+
+.activation-image-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glow-soft);
+}
+
+.activation-image-wrapper img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+@media (max-width: 980px) {
+  .activation-process .register-grid { grid-template-columns: 1fr; }
+  .activation-image-wrapper { max-width: 100%; margin: 24px auto 0; }
+}
+
 /* ===== STATS SECTION ===== */
 .stats {
   padding: var(--space-section) 0;
@@ -1221,6 +1356,26 @@ h1, h2, h3, h4, h5, h6 {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
   margin-top: 60px;
+}
+
+/* Texto explicativo dos tokens em layout horizontal */
+.tokens-explanation {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.tokens-explanation .section-description {
+  flex: 1 1 45%;
+  max-width: calc(50% - 12px);
+  margin-bottom: 0;
+}
+
+@media (max-width: 980px) {
+  .tokens-explanation { flex-direction: column; }
+  .tokens-explanation .section-description { flex: 1 1 100%; max-width: 100%; }
 }
 
 .token-card {
